@@ -1,0 +1,1 @@
+{"routes":[{"path":"/","title":"Nivoraa Home"},{"path":"/shop","title":"Shop the Edit"},{"path":"/collections/:slug","title":"Nivoraa Collection"},{"path":"/products/:slug","title":"Nivoraa Product"}]}

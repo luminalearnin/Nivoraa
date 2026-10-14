@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f4ef" />
+    <meta name="description" content="Nivoraa — a Guwahati fashion boutique for expressive everyday style. Stand out. Don't blend in." />
+    <title>Nivoraa — Stand out. Don’t blend in.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="announcement"><span>GUWAHATI ROOTS</span><span class="announcement-dot">✳</span><span>STAND OUT. DON’T BLEND IN.</span><span class="announcement-dot">✳</span><span>STYLE, ALL AROUND</span></div>
+    <header class="site-header">
+      <button class="mobile-menu-trigger icon-button" type="button" aria-label="Open menu" aria-expanded="false" data-action="menu">☰</button>
+      <a class="brand-lockup" href="/" data-route aria-label="Nivoraa homepage"><span class="brand-seal"><span>N</span></span><span class="brand-wordmark">NIVORAA<span class="brand-caption">GUWAHATI · INDIA</span></span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/shop" data-route>Shop all</a><a href="/collections/women" data-route>For her</a><a href="/collections/jewellery" data-route>Jewellery</a><a href="#about" data-scroll>Our story</a>
+      </nav>
+      <div class="header-tools">
+        <form class="search-form" id="search-form" role="search"><label class="sr-only" for="site-search">Search the collection</label><input id="site-search" type="search" placeholder="Find your next favourite" autocomplete="off" /><button aria-label="Search" type="submit">⌕</button></form>
+        <button class="icon-button cart-trigger" type="button" aria-label="Open demonstration bag" data-action="cart">Bag <span class="cart-count" id="cart-count">0</span></button>
+      </div>
+    </header>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="/shop" data-route>Shop all</a><a href="/collections/women" data-route>For her</a><a href="/collections/men" data-route>For him</a><a href="/collections/kids" data-route>For kids</a><a href="/collections/jewellery" data-route>Jewellery</a><a href="#about" data-scroll>Our story</a></nav>
+    <div class="data-notice" role="note"><span class="notice-mark">i</span><span><strong>Preview collection:</strong> products, prices, stock, delivery details and contact information are illustrative until confirmed.</span></div>
+    <main id="main-content" tabindex="-1"></main>
+    <footer class="site-footer" id="contact">
+      <div class="footer-main">
+        <div class="footer-brand"><a class="brand-lockup footer-lockup" href="/" data-route><span class="brand-seal"><span>N</span></span><span class="brand-wordmark">NIVORAA<span class="brand-caption">GUWAHATI · INDIA</span></span></a><p>Stand out.<br />Don’t blend in.</p></div>
+        <div class="footer-col"><h2>Explore</h2><a href="/shop" data-route>Shop the edit</a><a href="/collections/women" data-route>For her</a><a href="/collections/jewellery" data-route>Jewellery</a></div>
+        <div class="footer-col"><h2>Find us</h2><p>Guwahati, Assam</p><a href="https://www.instagram.com/nivoraa.guwahati/" target="_blank" rel="noreferrer">Instagram · @nivoraa.guwahati ↗</a><span class="footer-note">Store hours, address and ordering details to be confirmed.</span></div>
+        <div class="footer-contact"><span class="eyebrow">A little unexpected.</span><h2>Entirely you.</h2><a class="button button-dark" href="https://www.instagram.com/nivoraa.guwahati/" target="_blank" rel="noreferrer">Say hello on Instagram <span>↗</span></a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 NIVORAA · GUWAHATI</span><span>Sample storefront · business details pending confirmation</span><a href="#contact" data-scroll>Contact & info ↑</a></div>
+    </footer>
+    <div class="overlay" id="overlay" hidden></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-title" aria-modal="true" role="dialog" hidden>
+      <div class="drawer-header"><div><span class="eyebrow">YOUR EDIT</span><h2 id="cart-title">Your bag <span class="cart-count">0</span></h2></div><button class="icon-button close-button" type="button" aria-label="Close bag" data-action="close">×</button></div>
+      <div class="cart-lines" id="cart-lines"></div>
+      <div class="cart-empty" id="cart-empty"><span class="empty-star">✳</span><h3>A little room for something lovely.</h3><p>Your sample bag is empty for now.</p><a class="button button-dark" href="/shop" data-route data-action="close">Explore the edit</a></div>
+      <div class="cart-summary" id="cart-summary" hidden><p class="cart-disclaimer">Demo bag only. Prices and availability are unverified; checkout is not connected.</p><div class="subtotal-row"><span>Illustrative subtotal</span><strong id="cart-subtotal">₹0</strong></div><button class="button button-rose button-full" data-action="enquire">Ask about these pieces <span>↗</span></button></div>
+    </aside>
+    <section class="message-modal" id="message-modal" role="dialog" aria-modal="true" aria-labelledby="message-title" hidden><button class="icon-button close-button modal-close" type="button" aria-label="Close message" data-action="message-close">×</button><span class="modal-star">✳</span><span class="eyebrow">LET’S MAKE IT YOURS</span><h2 id="message-title">A real order starts with a real conversation.</h2><p id="message-copy">This preview doesn’t accept payments yet. Message Nivoraa through its Instagram profile to ask about availability. Delivery, prices and contact details still need confirmation.</p><a class="button button-dark" href="https://www.instagram.com/nivoraa.guwahati/" target="_blank" rel="noreferrer">Visit @nivoraa.guwahati <span>↗</span></a></section>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
