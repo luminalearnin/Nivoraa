@@ -7,18 +7,18 @@ const BASE_PATH = window.location.hostname.includes('github.io') ? (() => {
 })() : '';
 
 const products = [
-  { id: 'gulabi-midi', slug: 'gulabi-midi', name: 'The Gulabi Midi', category: 'women', categoryLabel: 'For her · New in', price: 2890, image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-2.webp', badge: 'Just landed', description: 'A soft, sweeping silhouette for slow brunches and the spontaneous plan after. Light, easy, and designed to make the everyday feel like an occasion.', sizes: ['XS', 'S', 'M', 'L', 'XL'], color: 'Rose · sample' },
-  { id: 'noir-dress', slug: 'noir-dress', name: 'After Hours in Noir', category: 'women', categoryLabel: 'For her · Occasions', price: 3490, image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-3.webp', badge: 'The occasion edit', description: 'A little drama, a lot of movement. This sample evening look has an airy, layered feel made for nights that deserve a second look.', sizes: ['XS', 'S', 'M', 'L'], color: 'Midnight · sample' },
-  { id: 'sunday-cotton', slug: 'sunday-cotton', name: 'Sunday Cotton Set', category: 'women', categoryLabel: 'For her · Everyday', price: 2290, image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-4.webp', badge: 'Easy does it', description: 'An easy-breezy cotton-inspired set in a garden-soft print. A comfortable, put-together sample look for warm afternoons.', sizes: ['S', 'M', 'L', 'XL'], color: 'Sage · sample' },
-  { id: 'small-moments', slug: 'small-moments', name: 'Small Moments Set', category: 'jewellery', categoryLabel: 'Jewellery · Finishing touches', price: 1190, image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-5.webp', badge: 'A little shine', description: 'A delicate trio-inspired jewellery sample: fine chain, sculptural studs and a subtle everyday gleam. Material, plating and exact set contents are illustrative only.', sizes: ['One size'], color: 'Warm gold · sample' }
+  { id: 'gulabi-midi', slug: 'gulabi-midi', name: 'The Gulabi Midi', category: 'women', categoryLabel: 'For her · New in', price: 2890, image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800', badge: 'Just landed', description: 'A soft, sweeping silhouette for slow brunches and the spontaneous plan after. Light, easy, and designed to make the everyday feel like an occasion.', sizes: ['XS', 'S', 'M', 'L', 'XL'], color: 'Rose · sample' },
+  { id: 'noir-dress', slug: 'noir-dress', name: 'After Hours in Noir', category: 'women', categoryLabel: 'For her · Occasions', price: 3490, image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800', badge: 'The occasion edit', description: 'A little drama, a lot of movement. This sample evening look has an airy, layered feel made for nights that deserve a second look.', sizes: ['XS', 'S', 'M', 'L'], color: 'Midnight · sample' },
+  { id: 'sunday-cotton', slug: 'sunday-cotton', name: 'Sunday Cotton Set', category: 'women', categoryLabel: 'For her · Everyday', price: 2290, image: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=800', badge: 'Easy does it', description: 'An easy-breezy cotton-inspired set in a garden-soft print. A comfortable, put-together sample look for warm afternoons.', sizes: ['S', 'M', 'L', 'XL'], color: 'Sage · sample' },
+  { id: 'small-moments', slug: 'small-moments', name: 'Small Moments Set', category: 'jewellery', categoryLabel: 'Jewellery · Finishing touches', price: 1190, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800', badge: 'A little shine', description: 'A delicate trio-inspired jewellery sample: fine chain, sculptural studs and a subtle everyday gleam. Material, plating and exact set contents are illustrative only.', sizes: ['One size'], color: 'Warm gold · sample' }
 ];
 const categories = [
-  { slug: 'women', title: 'For her', sub: 'WOMEN · THE NEW EDIT', image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-2.webp' },
-  { slug: 'men', title: 'For him', sub: 'MEN · DETAILS TO FOLLOW', image: '/manus-storage/async-images/VIDNCp9CgS07wBnV2gN5Cw/image-1.webp' },
-  { slug: 'kids', title: 'For little ones', sub: 'KIDS · DETAILS TO FOLLOW', image: '/manus-storage/async-images/VIDNCp9CgS07wBnV2gN5Cw/image-2.webp' },
-  { slug: 'jewellery', title: 'Jewellery', sub: 'THE FINISHING TOUCH', image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-5.webp' }
+  { slug: 'women', title: 'For her', sub: 'WOMEN · THE NEW EDIT', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800' },
+  { slug: 'men', title: 'For him', sub: 'MEN · DETAILS TO FOLLOW', image: 'https://images.unsplash.com/photo-1490983759902-b2d488924b22?w=800' },
+  { slug: 'kids', title: 'For little ones', sub: 'KIDS · DETAILS TO FOLLOW', image: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800' },
+  { slug: 'jewellery', title: 'Jewellery', sub: 'THE FINISHING TOUCH', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800' }
 ];
-const imageHero = '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-1.webp';
+const imageHero = 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200';
 const currency = value => `₹${Number(value).toLocaleString('en-IN')}`;
 const app = document.querySelector('#main-content');
 const cartCount = document.querySelector('#cart-count');
