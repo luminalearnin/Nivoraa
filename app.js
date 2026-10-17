@@ -1,16 +1,22 @@
+const sitePrefix = location.hostname === 'luminalearnin.github.io' ? '/Nivoraa' : '';
+const imagePath = name => `${sitePrefix}/assets/${name}`;
+function currentRoute() { const pathname = location.pathname; return sitePrefix && (pathname === sitePrefix || pathname.startsWith(`${sitePrefix}/`)) ? pathname.slice(sitePrefix.length) || '/' : pathname || '/'; }
+function siteUrl(path) { const url = new URL(path, location.origin); let pathname = url.pathname; if (sitePrefix && pathname !== sitePrefix && !pathname.startsWith(`${sitePrefix}/`)) pathname = `${sitePrefix}${pathname === '/' ? '/' : pathname}`; return `${pathname}${url.search}${url.hash}`; }
+function syncRouteLinks() { document.querySelectorAll('a[data-route]').forEach(link => { const target = link.dataset.routeTarget || link.getAttribute('href') || '/'; link.dataset.routeTarget = target; link.setAttribute('href', siteUrl(target)); }); }
+
 const products = [
-  { id: 'gulabi-midi', slug: 'gulabi-midi', name: 'The Gulabi Midi', category: 'women', categoryLabel: 'For her · New in', price: 2890, image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-2.webp', badge: 'Just landed', description: 'A soft, sweeping silhouette for slow brunches and the spontaneous plan after. Light, easy, and designed to make the everyday feel like an occasion.', sizes: ['XS', 'S', 'M', 'L', 'XL'], color: 'Rose · sample' },
-  { id: 'noir-dress', slug: 'noir-dress', name: 'After Hours in Noir', category: 'women', categoryLabel: 'For her · Occasions', price: 3490, image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-3.webp', badge: 'The occasion edit', description: 'A little drama, a lot of movement. This sample evening look has an airy, layered feel made for nights that deserve a second look.', sizes: ['XS', 'S', 'M', 'L'], color: 'Midnight · sample' },
-  { id: 'sunday-cotton', slug: 'sunday-cotton', name: 'Sunday Cotton Set', category: 'women', categoryLabel: 'For her · Everyday', price: 2290, image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-4.webp', badge: 'Easy does it', description: 'An easy-breezy cotton-inspired set in a garden-soft print. A comfortable, put-together sample look for warm afternoons.', sizes: ['S', 'M', 'L', 'XL'], color: 'Sage · sample' },
-  { id: 'small-moments', slug: 'small-moments', name: 'Small Moments Set', category: 'jewellery', categoryLabel: 'Jewellery · Finishing touches', price: 1190, image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-5.webp', badge: 'A little shine', description: 'A delicate trio-inspired jewellery sample: fine chain, sculptural studs and a subtle everyday gleam. Material, plating and exact set contents are illustrative only.', sizes: ['One size'], color: 'Warm gold · sample' }
+  { id: 'gulabi-midi', slug: 'gulabi-midi', name: 'The Gulabi Midi', category: 'women', categoryLabel: 'For her · New in', price: 2890, image: imagePath('dress-rose.webp'), badge: 'Just landed', description: 'A soft, sweeping silhouette for slow brunches and the spontaneous plan after. Light, easy, and designed to make the everyday feel like an occasion.', sizes: ['XS', 'S', 'M', 'L', 'XL'], color: 'Rose · sample' },
+  { id: 'noir-dress', slug: 'noir-dress', name: 'After Hours in Noir', category: 'women', categoryLabel: 'For her · Occasions', price: 3490, image: imagePath('black-evening.webp'), badge: 'The occasion edit', description: 'A little drama, a lot of movement. This sample evening look has an airy, layered feel made for nights that deserve a second look.', sizes: ['XS', 'S', 'M', 'L'], color: 'Midnight · sample' },
+  { id: 'sunday-cotton', slug: 'sunday-cotton', name: 'Sunday Cotton Set', category: 'women', categoryLabel: 'For her · Everyday', price: 2290, image: imagePath('cotton-set.webp'), badge: 'Easy does it', description: 'An easy-breezy cotton-inspired set in a garden-soft print. A comfortable, put-together sample look for warm afternoons.', sizes: ['S', 'M', 'L', 'XL'], color: 'Sage · sample' },
+  { id: 'small-moments', slug: 'small-moments', name: 'Small Moments Set', category: 'jewellery', categoryLabel: 'Jewellery · Finishing touches', price: 1190, image: imagePath('jewelry-set.webp'), badge: 'A little shine', description: 'A delicate trio-inspired jewellery sample: fine chain, sculptural studs and a subtle everyday gleam. Material, plating and exact set contents are illustrative only.', sizes: ['One size'], color: 'Warm gold · sample' }
 ];
 const categories = [
-  { slug: 'women', title: 'For her', sub: 'WOMEN · THE NEW EDIT', image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-2.webp' },
-  { slug: 'men', title: 'For him', sub: 'MEN · DETAILS TO FOLLOW', image: '/manus-storage/async-images/VIDNCp9CgS07wBnV2gN5Cw/image-1.webp' },
-  { slug: 'kids', title: 'For little ones', sub: 'KIDS · DETAILS TO FOLLOW', image: '/manus-storage/async-images/VIDNCp9CgS07wBnV2gN5Cw/image-2.webp' },
-  { slug: 'jewellery', title: 'Jewellery', sub: 'THE FINISHING TOUCH', image: '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-5.webp' }
+  { slug: 'women', title: 'For her', sub: 'WOMEN · THE NEW EDIT', image: imagePath('dress-rose.webp') },
+  { slug: 'men', title: 'For him', sub: 'MEN · DETAILS TO FOLLOW', image: imagePath('menswear-editorial.webp') },
+  { slug: 'kids', title: 'For little ones', sub: 'KIDS · DETAILS TO FOLLOW', image: imagePath('kidswear-editorial.webp') },
+  { slug: 'jewellery', title: 'Jewellery', sub: 'THE FINISHING TOUCH', image: imagePath('jewelry-set.webp') }
 ];
-const imageHero = '/manus-storage/async-images/j1ZGFpibk5TD7s8kNPyMee/image-1.webp';
+const imageHero = imagePath('editorial-hero.webp');
 const currency = value => `₹${Number(value).toLocaleString('en-IN')}`;
 const app = document.querySelector('#main-content');
 const cartCount = document.querySelector('#cart-count');
@@ -29,7 +35,7 @@ let cart = readCart();
 
 function readCart() { try { return JSON.parse(localStorage.getItem('nivoraa-demo-cart') || '[]'); } catch { return []; } }
 function saveCart() { localStorage.setItem('nivoraa-demo-cart', JSON.stringify(cart)); }
-function setRoute(path, replace = false) { if (replace) history.replaceState({}, '', path); else history.pushState({}, '', path); renderRoute(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function setRoute(path, replace = false) { const destination = siteUrl(path); if (replace) history.replaceState({}, '', destination); else history.pushState({}, '', destination); renderRoute(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function linkAttrs(route) { return `href="${route}" data-route`; }
 function productCard(product) {
   return `<article class="product-card"><a class="product-photo" href="/products/${product.slug}" data-route aria-label="View ${product.name}"><img src="${product.image}" alt="Illustrative editorial photograph for ${product.name}" loading="lazy" /><span class="product-badge">${product.badge}</span></a><button class="quick-add" type="button" aria-label="Add ${product.name} to sample bag" data-add="${product.id}">+</button><div class="product-info"><span class="product-category">${product.categoryLabel}</span><div class="product-title-row"><a class="product-title" href="/products/${product.slug}" data-route>${product.name}</a><span class="product-price">${currency(product.price)}</span></div><div class="price-hint">Illustrative price · sample only</div></div></article>`;
@@ -67,7 +73,7 @@ function refreshGrid() {
   grid.innerHTML = items.length ? items.map(productCard).join('') : `<div class="empty-state"><h3>Nothing in this edit just yet.</h3><p>The preview catalogue is intentionally small. Ask the boutique about current availability or browse another category.</p><button class="button button-outline" type="button" data-filter="all">Browse everything</button></div>`;
 }
 function renderRoute() {
-  const path = location.pathname.replace(/\/$/, '') || '/';
+  const path = currentRoute().replace(/\/$/, '') || '/';
   activeFilter = path.startsWith('/collections/') ? (path.split('/')[2] || 'all') : 'all';
   if (path === '/') app.innerHTML = homeTemplate();
   else if (path === '/shop') app.innerHTML = shopTemplate(null, new URLSearchParams(location.search).get('q') || '');
@@ -78,6 +84,7 @@ function renderRoute() {
   } else app.innerHTML = notFoundTemplate();
   refreshGrid();
   updateCartUI();
+  syncRouteLinks();
   document.title = path.startsWith('/products/') ? `${products.find(p => p.slug === path.split('/')[2])?.name || 'Style'} — Nivoraa` : path === '/' ? 'Nivoraa — Stand out. Don’t blend in.' : `${activeFilter !== 'all' ? categories.find(c => c.slug === activeFilter)?.title || 'Edit' : 'Shop the edit'} — Nivoraa`;
 }
 function notFoundTemplate() { return `<div class="page-shell not-found"><span class="eyebrow">This page took a little detour</span><h1>Not quite this way.</h1><p>Take a look at what’s in the edit instead.</p><a class="button button-dark" href="/shop" data-route>Shop the edit <span>↗</span></a></div>`; }
@@ -104,9 +111,9 @@ searchInput.addEventListener('focus', () => { if (window.matchMedia('(max-width:
 
 document.addEventListener('click', event => {
   const routeLink = event.target.closest('[data-route]');
-  if (routeLink) { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); closePanels(); document.querySelector('#mobile-nav').hidden = true; document.querySelector('[data-action="menu"]').setAttribute('aria-expanded', 'false'); setRoute(routeLink.getAttribute('href')); return; }
+  if (routeLink) { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); closePanels(); document.querySelector('#mobile-nav').hidden = true; document.querySelector('[data-action="menu"]').setAttribute('aria-expanded', 'false'); setRoute(routeLink.dataset.routeTarget || routeLink.getAttribute('href')); return; }
   const scrollLink = event.target.closest('[data-scroll]');
-  if (scrollLink) { event.preventDefault(); closePanels(); document.querySelector('#mobile-nav').hidden = true; const id = scrollLink.getAttribute('href'); if (location.pathname !== '/') setRoute('/'); setTimeout(() => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' }), 25); return; }
+  if (scrollLink) { event.preventDefault(); closePanels(); document.querySelector('#mobile-nav').hidden = true; const id = scrollLink.getAttribute('href'); if (currentRoute() !== '/') setRoute('/'); setTimeout(() => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' }), 25); return; }
   const add = event.target.closest('[data-add]'); if (add) { addItem(add.dataset.add); return; }
   const filter = event.target.closest('[data-filter]'); if (filter) { activeFilter = filter.dataset.filter; document.querySelectorAll('.chip[data-filter]').forEach(chip => chip.classList.toggle('active', chip.dataset.filter === activeFilter)); refreshGrid(); return; }
   const action = event.target.closest('[data-action]')?.dataset.action;
@@ -117,7 +124,7 @@ document.addEventListener('click', event => {
   if (action === 'menu') { const nav = document.querySelector('#mobile-nav'); nav.hidden = !nav.hidden; event.target.closest('[data-action="menu"]').setAttribute('aria-expanded', String(!nav.hidden)); }
   const qty = event.target.closest('[data-qty]'); if (qty) adjustQty(qty.dataset.id, qty.dataset.size, Number(qty.dataset.qty));
   const remove = event.target.closest('[data-remove]'); if (remove) removeItem(remove.dataset.remove, remove.dataset.size);
-  const size = event.target.closest('[data-size]'); if (size) { document.querySelectorAll('[data-size]').forEach(button => { button.classList.toggle('selected', button === size); button.setAttribute('aria-pressed', String(button === size)); }); const routeId = location.pathname.split('/')[2]; selectedSize[products.find(p => p.slug === routeId)?.id] = size.dataset.size; }
+  const size = event.target.closest('[data-size]'); if (size) { document.querySelectorAll('[data-size]').forEach(button => { button.classList.toggle('selected', button === size); button.setAttribute('aria-pressed', String(button === size)); }); const routeId = currentRoute().split('/')[2]; selectedSize[products.find(p => p.slug === routeId)?.id] = size.dataset.size; }
 });
 
 document.querySelector('#sort-products')?.addEventListener('change', refreshGrid);
