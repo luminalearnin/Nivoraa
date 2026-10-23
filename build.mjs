@@ -6,7 +6,7 @@ const routes = [
   'collections/women', 'collections/men', 'collections/kids', 'collections/jewellery',
   'products/gulabi-midi', 'products/noir-dress', 'products/sunday-cotton', 'products/small-moments'
 ];
-const staticFiles = ['index.html', 'app.js', 'styles.css', 'favicon.svg', 'manus-routes.json'];
+const staticFiles = ['index.html', 'app.js', 'styles.css', 'reference-refresh.css', 'favicon.svg', 'manus-routes.json'];
 
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
