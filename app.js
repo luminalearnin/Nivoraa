@@ -29,6 +29,9 @@ function start() {
     { s: 'kids', t: 'For little ones', img: A('kidswear-editorial.webp') },
     { s: 'jewellery', t: 'Jewellery', img: A('jewelry-set.webp') }
   ];
+  // Public profile/category signals: Women, Men, Kids, jewellery highlights,
+  // and current clothing/footwear edits. Product records remain unchanged.
+  const EDITS = ['Dresses', 'Co-ord sets', 'Tops', 'Pants', 'Jewellery', 'Shoes', 'Men', 'Kids'];
   const HERO = A('editorial-hero.webp');
   const INFO = {
     story: ['Our story', 'Nivoraa is a fashion store from Guwahati for expressive, everyday style. Stand out. Don’t blend in.'],
@@ -54,11 +57,13 @@ function start() {
   const isSaved = id => saved.includes(id);
 
   /* ---------- pieces ---------- */
-  const slides = p => `<div class="slides" data-slides><div><img src="${p.img}" alt="${p.n}" loading="lazy"></div><div class="z" style="--o:${p.o}"><img src="${p.img}" alt="${p.n}, close-up" loading="lazy"></div></div>`;
+  const slides = p => `<div class="slides" data-slides><div><img src="${p.img}" alt="${p.n}" loading="lazy" decoding="async"></div><div class="z" style="--o:${p.o}"><img src="${p.img}" alt="${p.n}, close-up" loading="lazy" decoding="async"></div></div>`;
   const dots = n => `<span class="dots">${Array.from({ length: n }, (_, i) => `<i class="${i ? '' : 'on'}"></i>`).join('')}</span>`;
   const bm = id => `<button class="bm ${isSaved(id) ? 'on' : ''}" data-save="${id}" aria-label="Save to wishlist">${I.bm}</button>`;
   const card = p => `<article class="pc" data-id="${p.id}"><div class="pimg">${slides(p)}${bm(p.id)}${dots(2)}</div><div class="pmeta"><a href="#/products/${p.id}"><b>${p.n}</b><small>${price(p.p)}</small></a><button data-quick="${p.id}" aria-label="Quick add ${p.n}">${I.plus}</button></div></article>`;
   const hcard = p => `<article class="hc" data-id="${p.id}"><div class="pimg">${slides(p)}${bm(p.id)}${dots(2)}</div><div class="pmeta"><a href="#/products/${p.id}"><b>${p.n}</b><small>${price(p.p)}</small></a><button data-quick="${p.id}" aria-label="Quick add ${p.n}">${I.plus}</button></div></article>`;
+  const glideCard = p => `<a class="sc product-slide" href="#/products/${p.id}"><div class="pglide-img">${slides(p)}</div><div class="pglide-meta"><small>${p.cl}</small><b>${p.n}</b><span>${price(p.p)}</span></div></a>`;
+  const editStrip = `<section class="edit-strip"><div class="edit-copy"><span class="tag2">The Nivoraa edit</span><h2>Pieces for every version of you.</h2><p>From everyday clothes and pants to jewellery, shoes and occasion finds — browse the current store edit or ask the Guwahati team for what’s in stock.</p><a class="chip dark" href="${IG}" target="_blank" rel="noopener">See current drops ↗</a></div><div class="edit-tags">${EDITS.map(x => `<span>${x}</span>`).join('')}</div></section>`;
   const storeCard = `<div class="st"><div class="stimg"><b>Nivoraa</b><span>Guwahati · Assam</span></div><div class="stm"><b>Guwahati</b><small>Guwahati, Assam<br>@nivoraa.guwahati</small></div><a class="stl" href="${IG}" target="_blank" rel="noopener">Visit on Instagram ↗</a></div>`;
   const footer = () => `<footer class="ft"><div class="flogo">Nivoraa</div><div class="fgrid">
     <div><h4>Connect with us</h4><a href="${IG}" target="_blank" rel="noopener">Instagram</a><a href="${DM}" target="_blank" rel="noopener">Message us</a></div>
@@ -70,9 +75,10 @@ function start() {
   const home = () => `<section class="hero" style="--hero:url('${HERO}')"><div class="hero-in"><p class="tagline">Stand out. <em>Don’t blend in.</em></p><a class="shopnow" href="#/collections/all">Shop now</a></div></section>
   <section class="blk"><div class="bh"><h2>Latest drop</h2><a class="chip dark" href="#/collections/all">Discover more</a></div><div class="pg">${P.map(card).join('')}</div></section>
   <section class="blk white"><div class="bh"><h2>For her</h2><a class="chip dark" href="#/collections/women">Discover more</a></div><div class="hs">${P.filter(p => p.c === 'women').map(hcard).join('')}</div></section>
-  <section class="stackwrap"><div class="stack" id="stack">${C.map(c => `<a class="sc" href="#/collections/${c.s}"><img src="${c.img}" alt="" loading="lazy"><span>${c.t}</span></a>`).join('')}</div></section>
+  <section class="stackwrap product-glide"><div class="bh"><h2>Glide through the edit</h2><a class="chip dark" href="#/collections/all">View all</a></div><div class="stack" id="stack">${P.map(glideCard).join('')}</div></section>
+  ${editStrip}
   <section class="blk white"><span class="tag2">Our store · Guwahati</span><div class="hs">${storeCard}</div></section>
-  <section class="blk white seo"><h3>Feel the style of Nivoraa, a fashion store from Guwahati</h3><p>Nivoraa brings expressive everyday style from Guwahati: dresses, sets and finishing touches picked to make a regular day feel like your day.</p><p id="seo-more" hidden>Delivery across India is mentioned on the store’s profile. Rates and timelines are confirmed when you order.</p><button class="more" data-act="more">Read more...</button>
+  <section class="blk white seo"><h3>Feel the style of Nivoraa, a fashion store from Guwahati</h3><p>Nivoraa brings expressive everyday style from Guwahati: clothes, pants, co-ord sets, jewellery, shoes and finishing touches picked to make a regular day feel like your day.</p><p id="seo-more" hidden>Delivery across India is mentioned on the store’s profile. Rates and timelines are confirmed when you order.</p><button class="more" data-act="more">Read more...</button>
     <div class="pop"><b>Popular searches</b></div><div class="pop"><a href="#/collections/all">Shop by category</a><a href="#/collections/all">Shop by style</a><a href="#/collections/all">Shop by color</a></div></section>
   ${footer()}`;
 
