@@ -189,3 +189,6 @@ body[data-page=account]{padding-bottom:0}
   .dnav a{position:relative;padding:10px 0}.dnav a::after{content:"";position:absolute;left:0;right:100%;bottom:4px;height:1px;background:var(--rose);transition:right .22s ease}.dnav a:hover::after{right:0}
   .top .tr{margin-left:auto}.dock{display:none}.hero{margin-top:0}
 }
+
+/* Defer painting of long below-fold sections while their lazy images load. */
+.blk.white,.stackwrap,.edit-strip,.seo,.ft{content-visibility:auto;contain-intrinsic-size:520px}

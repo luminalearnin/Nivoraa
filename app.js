@@ -100,7 +100,7 @@ function start() {
     const more = P.filter(x => x.id !== p.id);
     const rec = recent.filter(id => id !== p.id).map(find);
     return `<div class="pdm"><div class="crumb"><a href="#/">Home</a> &gt; <a href="#/collections/${p.c}">${p.cl}</a> &gt; ${p.n}</div>
-    <div class="gal" id="gal"><div class="slides" data-slides><div><img src="${p.img}" alt="${p.n}"></div><div class="z" style="--o:${p.o}"><img src="${p.img}" alt="${p.n}, close-up"></div></div><span class="cnt" id="cnt">1 / 2</span></div>
+    <div class="gal" id="gal"><div class="slides" data-slides><div><img src="${p.img}" alt="${p.n}" decoding="async" fetchpriority="high"></div><div class="z" style="--o:${p.o}"><img src="${p.img}" alt="${p.n}, close-up" loading="lazy" decoding="async"></div></div><span class="cnt" id="cnt">1 / 2</span></div>
     <div class="pi"><div class="nm"><h1>${p.n}</h1><button class="sv bm-i ${isSaved(p.id) ? 'on' : ''}" data-save="${p.id}" aria-label="Save">${I.bm}</button><button class="sg" data-info="size">Size Guide</button></div>
     <p class="pp">${price(p.p)}</p>
     <div class="sz" id="sz">${p.sizes.map((s, i) => `<button class="${i ? '' : 'on'}" data-size="${s}">${s}</button>`).join('')}</div>
@@ -128,12 +128,12 @@ function start() {
   function bagSheet() {
     if (!bag.length) return openSheet('<h3>Your bag</h3><p class="sub">Your bag is empty. A little room for something lovely.</p><a class="btn k" href="#/collections/all">Shop all</a>');
     const total = bag.reduce((a, l) => a + find(l.id).p * l.qty, 0);
-    openSheet(`<h3>Your bag (${bag.reduce((a, l) => a + l.qty, 0)})</h3>${bag.map((l, i) => { const p = find(l.id); return `<div class="row"><img src="${p.img}" alt=""><div><b>${p.n}</b><span>Size ${l.size}</span><div class="qty"><button data-q="${i}" data-d="-1" aria-label="Fewer">−</button><i>${l.qty}</i><button data-q="${i}" data-d="1" aria-label="More">+</button></div></div><b>${price(p.p * l.qty)}</b></div>`; }).join('')}<div class="tot"><span>Total</span><span>${price(total)}</span></div><button class="btn k" data-act="checkout">Buy now</button>`);
+    openSheet(`<h3>Your bag (${bag.reduce((a, l) => a + l.qty, 0)})</h3>${bag.map((l, i) => { const p = find(l.id); return `<div class="row"><img src="${p.img}" alt="" loading="lazy" decoding="async"><div><b>${p.n}</b><span>Size ${l.size}</span><div class="qty"><button data-q="${i}" data-d="-1" aria-label="Fewer">−</button><i>${l.qty}</i><button data-q="${i}" data-d="1" aria-label="More">+</button></div></div><b>${price(p.p * l.qty)}</b></div>`; }).join('')}<div class="tot"><span>Total</span><span>${price(total)}</span></div><button class="btn k" data-act="checkout">Buy now</button>`);
   }
   let co = [];
   function checkout(lines) {
     co = lines; const total = lines.reduce((a, l) => a + find(l.id).p * l.qty, 0);
-    openSheet(`<h3>Your order</h3><p class="sub">One last look</p>${lines.map(l => { const p = find(l.id); return `<div class="row"><img src="${p.img}" alt=""><div><b>${p.n}</b><span>Size ${l.size} × ${l.qty}</span></div><b>${price(p.p * l.qty)}</b></div>`; }).join('')}<div class="tot"><span>Total</span><span>${price(total)}</span></div><button class="btn r" data-act="place">Place order</button><div class="done" id="cm" role="status"></div>`);
+    openSheet(`<h3>Your order</h3><p class="sub">One last look</p>${lines.map(l => { const p = find(l.id); return `<div class="row"><img src="${p.img}" alt="" loading="lazy" decoding="async"><div><b>${p.n}</b><span>Size ${l.size} × ${l.qty}</span></div><b>${price(p.p * l.qty)}</b></div>`; }).join('')}<div class="tot"><span>Total</span><span>${price(total)}</span></div><button class="btn r" data-act="place">Place order</button><div class="done" id="cm" role="status"></div>`);
   }
   function place() {
     const L = co.map((l, i) => { const p = find(l.id); return `${i + 1}. ${p.n} · Size ${l.size} × ${l.qty} – ${price(p.p * l.qty)}`; }).join('\n');
@@ -141,7 +141,7 @@ function start() {
     sheet.querySelector('[data-act=place]').hidden = true;
   }
   function wishSheet() {
-    openSheet(`<h3>Saved pieces</h3>${saved.length ? saved.map(id => { const p = find(id); return `<div class="row"><img src="${p.img}" alt=""><div><b>${p.n}</b><span>${price(p.p)}</span></div><a class="chip" href="#/products/${p.id}">View</a></div>`; }).join('') : '<p class="sub">Tap the bookmark on any piece to save it here.</p>'}`);
+    openSheet(`<h3>Saved pieces</h3>${saved.length ? saved.map(id => { const p = find(id); return `<div class="row"><img src="${p.img}" alt="" loading="lazy" decoding="async"><div><b>${p.n}</b><span>${price(p.p)}</span></div><a class="chip" href="#/products/${p.id}">View</a></div>`; }).join('') : '<p class="sub">Tap the bookmark on any piece to save it here.</p>'}`);
   }
   function filtersSheet() {
     const o = (k, v, t) => `<button class="chip ${F[k] === v ? 'on' : ''}" data-f="${k}:${v}">${t}</button>`;
@@ -151,7 +151,7 @@ function start() {
   function results(q) {
     q = q.trim().toLowerCase();
     const l = q ? P.filter(p => `${p.n} ${p.cl} ${p.d}`.toLowerCase().includes(q)) : [];
-    $('#sr').innerHTML = !q ? `<p class="sub" style="margin-top:18px">Try “dress”, “set” or “jewellery”.</p>` : l.length ? l.map(p => `<a class="row" href="#/products/${p.id}"><img src="${p.img}" alt=""><div><b>${p.n}</b><span>${p.cl}</span></div><b>${price(p.p)}</b></a>`).join('') : '<p class="sub" style="margin-top:18px">No pieces match that search.</p>';
+    $('#sr').innerHTML = !q ? `<p class="sub" style="margin-top:18px">Try “dress”, “set” or “jewellery”.</p>` : l.length ? l.map(p => `<a class="row" href="#/products/${p.id}"><img src="${p.img}" alt="" loading="lazy" decoding="async"><div><b>${p.n}</b><span>${p.cl}</span></div><b>${price(p.p)}</b></a>`).join('') : '<p class="sub" style="margin-top:18px">No pieces match that search.</p>';
   }
 
   /* ---------- router ---------- */
