@@ -180,3 +180,12 @@ body[data-page=account]{padding-bottom:0}
   .edit-tags{justify-content:flex-start}
   .product-glide .stack{padding-left:12vw;padding-right:12vw}
 }
+
+.dnav{display:none}
+@media(min-width:900px){
+  .top{position:fixed;padding:15px 28px 13px;background:rgba(255,253,249,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(226,218,203,.78)}
+  .pill{background:transparent;padding:0;height:34px}.pill .plus{display:none}.logo{font-size:19px;letter-spacing:.2em}
+  .dnav{display:flex;align-items:center;gap:26px;margin-left:46px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
+  .dnav a{position:relative;padding:10px 0}.dnav a::after{content:"";position:absolute;left:0;right:100%;bottom:4px;height:1px;background:var(--rose);transition:right .22s ease}.dnav a:hover::after{right:0}
+  .top .tr{margin-left:auto}.dock{display:none}.hero{margin-top:0}
+}
